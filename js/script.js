@@ -1,7 +1,10 @@
 let computerSelection, playerSelection;
+let string = "Rock, Paper, Scissors"
+let test = document.getElementById('test');
 let playerScore = 0; 
 let computerScore = 0;
 let whosePoint = '';
+let computerChoices = ['rock', 'paper', 'scissors'];
 const scoreBoard = document.querySelector('#scoreBoard');
 const playerBoard = document.querySelector('.playerBoard');
 const computerBoard = document.querySelector('.computerBoard');
@@ -15,14 +18,18 @@ startBtn.addEventListener('click', startGame);
 let btnRock = document.getElementById('rock');
 let btnPaper = document.getElementById('paper');
 let btnScissors = document.getElementById('scissors');
+btnRock.style.display = 'none';
+btnPaper.style.display = 'none';
+btnScissors.style.display = 'none';
 btnRock.addEventListener('click', function() { playRound('rock'); });
 btnPaper.addEventListener('click', function() { playRound('paper'); });
 btnScissors.addEventListener('click', function() { playRound('scissors'); });
 
 function startGame() {
     whosePoint = '';
-    moves.forEach(move => move.classList.remove('hidden'));
-    startBtn.classList.add('hidden');
+    moves.forEach(move => move.style.display = 'block');
+    // startBtn.classList.add('hidden');
+    startBtn.style.display = 'none';
     playerScore = 0;
     computerScore = 0;
     playerBoard.textContent = "Player score: " + playerScore;
@@ -33,23 +40,41 @@ function startGame() {
 
 
 function endGame() {
-    moves.forEach(move => move.classList.add('hidden'));
+    // moves.forEach(move => move.classList.add('hidden'));
+    // moves.forEach(move => move.parentNode.removeChild(move));
     startBtn.classList.remove('hidden');
 }
 
 function getComputerChoice() {
-    let num = Math.floor(Math.random() * 100);
-    if (num < 33) {
-        computerSelection = 'rock';
-    } else if (num < 66) {
-        computerSelection = 'paper';
-    } else {
-        computerSelection = 'scissors';
-    }
+    return computerChoices[Math.floor(Math.random() * computerChoices.length)];
     }
 
+let timePerLetter = 200;
+let newLineCharacter = '|';
+
+function printOut(string) {
+    let i = 0;
+    let printNextLetter = function() {
+        if (i < string.length) {
+            var CHAR = string[i];
+            switch(CHAR) {
+                case newLineCharacter:
+                    test.append('<br>');
+                    break;
+                default:
+                    test.append(CHAR);
+                    break;
+            }
+            i++;
+            setTimeout(printNextLetter, timePerLetter);
+        }
+    }
+    printNextLetter();
+}
+printOut(string);
+
 function playRound(playerSelection) {
-    getComputerChoice();
+    computerSelection = getComputerChoice();
         if (computerSelection != playerSelection) {
         if (computerSelection === "rock") {
             if (playerSelection === "paper") {

@@ -1,6 +1,9 @@
 html, body {
     padding: 0;
     margin: 0;
+    /* background-color: black; */
+    /* color: red; */
+    font-family: Helvetica;
 }
 
 .header {
@@ -20,6 +23,19 @@ button {
     padding: 5px;
 }
 
+img {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 25px;
+}
+
+img:hover {
+    /* background-color: red; */
+    /* border: 3px solid red; */
+    transform: scale(1.1);
+    /* box-shadow: 10px; */
+}
+
 #scoreBoard {
     border: 2px solid black;
     border-radius: 5px;
@@ -29,6 +45,11 @@ button {
     width: 50%;
     margin: auto;
     margin-top: 15px;
+}
+
+.moves {
+    display: flex;
+    justify-content: center;
 }
 
 .scores {
