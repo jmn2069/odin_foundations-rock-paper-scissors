@@ -1,0 +1,50 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: space-between;
+}
+
+button {
+    margin: 5px;
+    padding: 5px;
+}
+
+#scoreBoard {
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    /* justify-items: center; */
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.scores {
+    display: flex;
+    /* justify-content: center; */
+}
+
+#scoreBoard p {
+    margin: 5px;
+    padding: 5px;
+}
+
+#results {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+}
