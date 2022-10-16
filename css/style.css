@@ -24,7 +24,6 @@ button {
     border: 2px solid black;
     border-radius: 5px;
     display: flex;
-    /* justify-items: center; */
     align-items: center;
     flex-direction: column;
     width: 50%;
@@ -34,7 +33,6 @@ button {
 
 .scores {
     display: flex;
-    /* justify-content: center; */
 }
 
 #scoreBoard p {
@@ -45,6 +43,9 @@ button {
 #results {
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     flex-direction: column;
+}
+
+.hidden {
+    transform: scale(0);
 }
