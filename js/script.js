@@ -28,7 +28,7 @@ btnScissors.addEventListener('click', function() { playRound('scissors'); });
 function startGame() {
     whosePoint = '';
     moves.forEach(move => move.style.display = 'block');
-    // startBtn.classList.add('hidden');
+    moves.forEach(move => move.classList.add('fadein'));
     startBtn.style.display = 'none';
     playerScore = 0;
     computerScore = 0;
@@ -40,7 +40,9 @@ function startGame() {
 
 
 function endGame() {
-    // moves.forEach(move => move.classList.add('hidden'));
+    startBtn.style.display = 'block';
+    moves.forEach(move => move.classList.remove('slidein'));
+    moves.forEach(move => move.style.display = 'none');
     // moves.forEach(move => move.parentNode.removeChild(move));
     startBtn.classList.remove('hidden');
 }
