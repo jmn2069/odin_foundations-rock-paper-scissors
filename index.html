@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Rock, Paper, Scissors</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="./js/script.js" defer></script> 
-</head>
-<body>
-  <div class="header">
-    <h1 id="test"></h1>
-  </div>
-  <div class="container">
-    <!-- <button  class="move hidden" id="rock">Rock</button> -->
-    <!-- <button class="move hidden" id="paper">Paper</button> -->
-    <!-- <button class="move hidden" id="scissors">Scissors</button> -->
-    <!-- <button id="start">Start!</button> -->
-  </div>
-  <div id="scoreBoard">
-    <h2>Scoreboard</h2>
-    <div class="scores">
-      <p class="playerBoard">Player score: 0</p>
-      <p class="computerBoard">Computer score: 0</p>
+  <head>
+    <meta charset="UTF-8">
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js" defer></script> 
+  </head>
+  <body>
+    <div class="header">
+      <h1 id="headerText" class="hidden">Rock, Paper, Scissors</h1>
+      <div width="100px" id="scrollText"></div>
     </div>
-  </div>
-  <div id="results">
-    <p id="pointP"></p>
-    <p id="resultP"></p>
-  </div>
-  <div class="moves">
-    <img width="150px" class='move' id='rock' src="./img/rockv2.png">
-    <img width="150px" class='move' id='paper' src="./img/paperv2.png">
-    <img width="150px" class='move' id='scissors' src="./img/scissorsv2.png">
-    <img width="150px" height='150px' id="start" src="./img/powerv2.png">
-  </div>
-  <!-- <div class="sphereHolder">
-  <div class="sphere" id="start"><p>Start</p></div>
-</div> -->
-<div class="footer">
-</div>
-</body>
+    <div class="container">
+      <div class="moves">
+        <img width="150px" class='move hidden' id='rock' src="./img/rockv2.png">
+        <img width="150px" class='move hidden' id='paper' src="./img/paperv2.png">
+        <img width="150px" class='move hidden' id='scissors' src="./img/scissorsv2.png">
+        <div id="startDiv">
+          <img width="150px" height='150px' class='startGroup startBtn' alt='power button' id="start" src="./img/powerv2.png">
+          <br>
+          <p class='startGroup'>press the button</p>
+          <p class='startGroup'>if you dare...</p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div id="scoreBoard">
+        <div class="players">
+          <img width="100px" class='playersGroup hidden' alt='human avatar' src="./img/cranium_human.png">
+          <h2 class="playersGroup hidden">Vs.</h2>
+          <img width="100px" class="playersGroup hidden" alt='machine avatar' src="./img/cranium_machine.png">
+        </div>
+        <div class="scores">
+          <h2 class="playerBoard playersGroup hidden">0</h2>
+          <h2 class="computerBoard playersGroup hidden">0</h2>
+        </div>
+        <div id="results">
+          <p id="pointP"></p>
+          <p id="resultP"></p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

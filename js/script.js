@@ -1,70 +1,90 @@
 let computerSelection, playerSelection;
-let string = "Rock, Paper, Scissors"
-let test = document.getElementById('test');
+let newGame = false;
+const string = "Choose your weapon, go forth, and defend humanity. First to five wins...";
+const scrollText = document.getElementById('scrollText');
 let playerScore = 0; 
 let computerScore = 0;
 let whosePoint = '';
-let computerChoices = ['rock', 'paper', 'scissors'];
+const computerChoices = ['rock', 'paper', 'scissors'];
 const scoreBoard = document.querySelector('#scoreBoard');
 const playerBoard = document.querySelector('.playerBoard');
 const computerBoard = document.querySelector('.computerBoard');
 const results = document.querySelector('#results');
 const newP = document.getElementById('pointP');
 const newPoint = document.getElementById('resultP');
-let startBtn = document.getElementById('start');
+const startBtn = document.getElementById('start');
 const moves = document.querySelectorAll('.move');
-
-startBtn.addEventListener('click', startGame);
-let btnRock = document.getElementById('rock');
-let btnPaper = document.getElementById('paper');
-let btnScissors = document.getElementById('scissors');
+const startGroup = document.querySelectorAll('.startGroup');
+const btnRock = document.getElementById('rock');
+const btnPaper = document.getElementById('paper');
+const btnScissors = document.getElementById('scissors');
+const playersGroup = document.querySelectorAll('.playersGroup');
+const headerText = document.getElementById('headerText');
 btnRock.style.display = 'none';
 btnPaper.style.display = 'none';
 btnScissors.style.display = 'none';
+startBtn.addEventListener('click', intro);
 btnRock.addEventListener('click', function() { playRound('rock'); });
 btnPaper.addEventListener('click', function() { playRound('paper'); });
 btnScissors.addEventListener('click', function() { playRound('scissors'); });
 
+function intro() {
+    startGroup.forEach(startGroup => startGroup.classList.add('fadeout'));
+    if (!newGame) {
+    setTimeout(() => headerText.style.display = 'block', 3000);
+    setTimeout(() => headerText.classList.add('fadein'), 500);
+    setTimeout(() => playersGroup.forEach(playersGroup => playersGroup.style.display = 'block'), 4000)
+    setTimeout(() => playersGroup.forEach(playersGroup => playersGroup.classList.add('fadein')), 500)
+    setTimeout(() => printOut(scrollText, string), 4000);
+    setTimeout(() => moves.forEach(move => move.style.display = 'block'), 6000);
+    setTimeout(() => moves.forEach(move => move.classList.add('fadein')), 500);
+    setTimeout(() => startGroup.forEach(startGroup => startGroup.style.display = 'none'), 3000);
+    setTimeout(() => startGroup.forEach(startGroup => startGroup.classList.remove('fadeout')), 3000);
+} else {
+    startBtn.classList.add('fadeout');
+    setTimeout(() => startGroup.forEach(startGroup => startGroup.style.display = 'none'), 3000);
+    setTimeout(() => startBtn.classList.remove('fadeout'), 3000);
+    setTimeout(() => moves.forEach(move => move.style.display = 'block'), 3000);
+    setTimeout(() => moves.forEach(move => move.classList.add('fadein')), 500);
+    startGame();
+}
+}
+
 function startGame() {
     whosePoint = '';
-    moves.forEach(move => move.style.display = 'block');
-    moves.forEach(move => move.classList.add('fadein'));
-    startBtn.style.display = 'none';
     playerScore = 0;
     computerScore = 0;
-    playerBoard.textContent = "Player score: " + playerScore;
-    computerBoard.textContent = "Computer score: " + computerScore;
+    playerBoard.textContent = playerScore;
+    computerBoard.textContent = computerScore;
     newP.textContent = '';
     newPoint.textContent = whosePoint;
 }
 
-
 function endGame() {
+    startBtn.classList.add('fadein');
     startBtn.style.display = 'block';
-    moves.forEach(move => move.classList.remove('slidein'));
     moves.forEach(move => move.style.display = 'none');
-    // moves.forEach(move => move.parentNode.removeChild(move));
-    startBtn.classList.remove('hidden');
+    newGame = true;
 }
 
 function getComputerChoice() {
     return computerChoices[Math.floor(Math.random() * computerChoices.length)];
     }
 
-let timePerLetter = 200;
-let newLineCharacter = '|';
+const timePerLetter = 50;
+const newLineCharacter = '|';
 
-function printOut(string) {
+function printOut(target, string) {
     let i = 0;
     let printNextLetter = function() {
         if (i < string.length) {
             var CHAR = string[i];
             switch(CHAR) {
                 case newLineCharacter:
-                    test.append('<br>');
+                    target.append('<br>');
                     break;
                 default:
-                    test.append(CHAR);
+                    target.append(CHAR);
                     break;
             }
             i++;
@@ -73,7 +93,7 @@ function printOut(string) {
     }
     printNextLetter();
 }
-printOut(string);
+
 
 function playRound(playerSelection) {
     computerSelection = getComputerChoice();
@@ -106,8 +126,8 @@ function playRound(playerSelection) {
         } else {
             whosePoint = 'Tie';
         }
-        playerBoard.textContent = "Player score: " + playerScore;
-        computerBoard.textContent = "Computer score: " + computerScore;
+        playerBoard.textContent = playerScore;
+        computerBoard.textContent = computerScore;
         newP.textContent = "You threw " + playerSelection + " & computer threw " + computerSelection;
         newPoint.textContent = whosePoint;
         if (playerScore > 4 || computerScore > 4) {
@@ -117,22 +137,7 @@ function playRound(playerSelection) {
                 winner = "Computer";
             }
             newP.textContent = "Game over!! " + winner + " wins!!" 
+            newGame = true;
             endGame();
         }
     }
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        getComputerChoice();
-        getPlayerChoice();
-        playRound(computerSelection, playerSelection);
-    }
-    if (playerScore === computerScore) {
-        console.log("It's a tie game!");
-    } else if (playerScore > computerScore) {
-        console.log("Player wins!");
-    } else {
-        console.log("Computer wins!")
-    }
-} 
-
